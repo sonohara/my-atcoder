@@ -3,46 +3,38 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"strconv"
 )
 
-// https://atcoder.jp/contests/abc296/tasks/abc296_d
+// https://atcoder.jp/contests/abc296/tasks/abc296_c
 func main() {
 	fmt.Print(f(sc))
 }
 
-func f(sc *bufio.Scanner) int {
+func f(sc *bufio.Scanner) string {
 	sc.Split(bufio.ScanWords)
 
 	n := nextInt(sc)
-	m := nextInt(sc)
-
-	if m == n {
-		return m
+	x := nextInt(sc)
+	if x == 0 {
+		return "Yes"
 	}
 
-	if n*n < m {
-		return -1
+	a := map[int]int{}
+	ax := []int{}
+	for i := 0; i < n; i++ {
+		_a := nextInt(sc)
+		ax = append(ax, _a+x)
+		a[_a] = _a
 	}
-
-	r := 0
-	for i := n; i > 1; i-- {
-		x := m % i
-		if x == 0 && m/i <= n {
-			return m
-		}
-		j := int(math.Ceil(float64(m / i)))
-		if j > n {
-			break
-		}
-		if r == 0 || x < r {
-			r = x
+	for i := 0; i < n; i++ {
+		_, ok := a[ax[i]]
+		if ok {
+			return "Yes"
 		}
 	}
-
-	return m + r
+	return "No"
 }
 
 func nextLine(sc *bufio.Scanner) string {
