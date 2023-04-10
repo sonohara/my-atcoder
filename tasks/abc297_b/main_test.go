@@ -13,28 +13,28 @@ func Test_f(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want int
+		want string
 	}{
 		{
 			name: "Example1",
 			args: args{
-				sc: bufio.NewScanner(strings.NewReader(`3 8`)),
+				sc: bufio.NewScanner(strings.NewReader(`RNBQKBNR`)),
 			},
-			want: 4,
+			want: "Yes",
 		},
 		{
 			name: "Example2",
 			args: args{
-				sc: bufio.NewScanner(strings.NewReader(`1234567890 1234567890`)),
+				sc: bufio.NewScanner(strings.NewReader(`KRRBBNNQ`)),
 			},
-			want: 0,
+			want: "No",
 		},
 		{
 			name: "Example3",
 			args: args{
-				sc: bufio.NewScanner(strings.NewReader(`1597 987`)),
+				sc: bufio.NewScanner(strings.NewReader(`BRKRBQNN`)),
 			},
-			want: 15,
+			want: "No",
 		},
 	}
 	for _, tt := range tests {

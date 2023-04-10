@@ -18,23 +18,23 @@ func Test_f(t *testing.T) {
 		{
 			name: "Example1",
 			args: args{
-				sc: bufio.NewScanner(strings.NewReader(`3 8`)),
+				sc: bufio.NewScanner(strings.NewReader(`4 500 300 900 1300 1700`)),
 			},
-			want: 4,
+			want: 1300,
 		},
 		{
 			name: "Example2",
 			args: args{
-				sc: bufio.NewScanner(strings.NewReader(`1234567890 1234567890`)),
+				sc: bufio.NewScanner(strings.NewReader(`5 99 100 200 300 400 500`)),
 			},
-			want: 0,
+			want: -1,
 		},
 		{
 			name: "Example3",
 			args: args{
-				sc: bufio.NewScanner(strings.NewReader(`1597 987`)),
+				sc: bufio.NewScanner(strings.NewReader(`4 500 100 600 1100 1600`)),
 			},
-			want: 15,
+			want: 600,
 		},
 	}
 	for _, tt := range tests {

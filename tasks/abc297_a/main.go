@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-// https://atcoder.jp/contests/abc297/tasks/abc297_d
+// https://atcoder.jp/contests/abc297/tasks/abc297_a
 func main() {
 	fmt.Print(f(sc))
 }
@@ -15,35 +15,27 @@ func main() {
 func f(sc *bufio.Scanner) int {
 	sc.Split(bufio.ScanWords)
 
-	a := nextInt(sc)
-	b := nextInt(sc)
+	n := nextInt(sc)
+	d := nextInt(sc)
+	x1 := 0
+	x2 := 0
 
-	i := 0
-	for a != b {
-		if a > b {
-			x := 1
-			if a-b > b {
-				// x = int(math.Floor(float64((a - b) / b)))
-				x = (a - b) / b
-			}
-			a = a - (b * x)
-			i = i + x
-		} else {
-			x := 1
-			if b-a > a {
-				// x = int(math.Floor(float64((b - a) / a)))
-				x = (b - a) / a
-			}
-			b = b - (a * x)
-			i = i + x
+	for i := 0; i < n; i++ {
+		x2 = nextInt(sc)
+		if x1 == 0 {
+			x1 = x2
+			continue
 		}
+		if x2-x1 <= d {
+			return x2
+		}
+		x1 = x2
 	}
 
-	return i
+	return -1
 }
 
 // Greatest Common Divisor
-// ユークリッドの互除法を利用して、2数の最大公約数を求める
 func GCD(a, b int) int {
 	for b != 0 {
 		t := b

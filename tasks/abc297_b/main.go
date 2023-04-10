@@ -5,45 +5,55 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
-// https://atcoder.jp/contests/abc297/tasks/abc297_d
+// https://atcoder.jp/contests/abc297/tasks/abc297_b
 func main() {
 	fmt.Print(f(sc))
 }
 
-func f(sc *bufio.Scanner) int {
+func f(sc *bufio.Scanner) string {
 	sc.Split(bufio.ScanWords)
 
-	a := nextInt(sc)
-	b := nextInt(sc)
-
-	i := 0
-	for a != b {
-		if a > b {
-			x := 1
-			if a-b > b {
-				// x = int(math.Floor(float64((a - b) / b)))
-				x = (a - b) / b
+	b1 := 0
+	b2 := 0
+	k := 0
+	r1 := 0
+	r2 := 0
+	s := nextLine(sc)
+	for i, v := range strings.Split(s, "") {
+		if v == "B" {
+			if b1 == 0 {
+				b1 = i + 1
+			} else {
+				b2 = i + 1
 			}
-			a = a - (b * x)
-			i = i + x
-		} else {
-			x := 1
-			if b-a > a {
-				// x = int(math.Floor(float64((b - a) / a)))
-				x = (b - a) / a
+		}
+		if v == "K" {
+			k = i + 1
+		}
+		if v == "R" {
+			if r1 == 0 {
+				r1 = i + 1
+			} else {
+				r2 = i + 1
 			}
-			b = b - (a * x)
-			i = i + x
 		}
 	}
 
-	return i
+	if (b1+b2)%2 == 0 {
+		return "No"
+	}
+
+	if r1 > k || k > r2 {
+		return "No"
+	}
+
+	return "Yes"
 }
 
 // Greatest Common Divisor
-// ユークリッドの互除法を利用して、2数の最大公約数を求める
 func GCD(a, b int) int {
 	for b != 0 {
 		t := b
