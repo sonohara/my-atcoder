@@ -57,6 +57,9 @@ func GCD(a, b int) int {
 
 func nextLine(sc *bufio.Scanner) string {
 	sc.Scan()
+	if err := sc.Err(); err != nil {
+		panic(err)
+	}
 	return sc.Text()
 }
 
