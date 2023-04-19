@@ -16,6 +16,7 @@ func main() {
 
 func f(sc *bufio.Scanner) string {
 	sc.Split(bufio.ScanWords)
+	// デフォルトのバッファサイズより入力長が大きい場合、正しく読み込めないため拡張しておく
 	buf := make([]byte, 4096)
 	sc.Buffer(buf, int(math.Pow10(5)))
 
