@@ -13,6 +13,7 @@ func main() {
 	fmt.Print(f(sc))
 }
 
+// see: https://qiita.com/drken/items/fd4e5e3630d0f5859067#%E7%AC%AC-10-%E5%95%8F--abc-086-c---traveling-300-%E7%82%B9
 func f(sc *bufio.Scanner) string {
 	sc.Split(bufio.ScanWords)
 	// デフォルトのバッファサイズより入力長が大きい場合、正しく読み込めないため拡張しておく
